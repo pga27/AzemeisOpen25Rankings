@@ -337,7 +337,7 @@ function calculateRankings(data, table) {
 }
 
 async function getWCIF(table) {
-    return await fetch(`https://www.worldcubeassociation.org/api/v0/competitions/CubinginVenteira2025/wcif/public`)
+    return await fetch(`https://www.worldcubeassociation.org/api/v0/competitions/AzemeisOpen2025/wcif/public`)
         .then(response => response.json())
         .then(data => calculateRankings(data, table))
         .catch(error => console.error('Error fetching WCIF:', error));
