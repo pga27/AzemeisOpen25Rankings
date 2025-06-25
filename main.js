@@ -204,21 +204,49 @@ function buildPsychSheet(data, table) {
 function calculateRankings(data, table) {
     sumOfSingles = {}
     if (data.error) {
+        const messageWrapper = document.createElement('div');
+        messageWrapper.className = "bg-white bg-opacity-90 p-6 rounded-xl shadow-lg max-w-xl";
+
+        const text = document.createElement('h2');
+        text.className = "text-2xl font-bold text-gray-800 text-center";
+        text.textContent = `Mais informações em breve...`;
+        const lineBrak = document.createElement('br');
+        const text2 = document.createElement('h2');
+        text2.className = "text-2xl font-bold text-gray-800 text-center";
+        text2.textContent = `More information soon...`;
+
+        messageWrapper.appendChild(text);
+        messageWrapper.appendChild(lineBrak);
+        messageWrapper.appendChild(text2);
+
+        table.innerHTML = "";
+
+        // Center the wrapper inside the table container
+        table.style.display = "flex";
+        table.style.justifyContent = "center";
+        table.style.alignItems = "center";
+        table.style.minHeight = "60vh";
+        table.style.textAlign = "center";
+
+        table.appendChild(messageWrapper);
         return;
     }
     let today = new Date().getTime();
     if (new Date(data.registrationInfo.openTime.split('T')[0]) > today) {
-        alert(`O registo da competição ainda não abriu. Volta dia ${data.registrationInfo.openTime.split('T')[0]}.`);
-
-        // Wrapper div (acts like a "card")
         const messageWrapper = document.createElement('div');
         messageWrapper.className = "bg-white bg-opacity-90 p-6 rounded-xl shadow-lg max-w-xl";
 
         const text = document.createElement('h2');
         text.className = "text-2xl font-bold text-gray-800 text-center";
         text.textContent = `O registo da competição ainda não abriu. Volta dia ${data.registrationInfo.openTime.split('T')[0]}.`;
+        const lineBrak = document.createElement('br');
+        const text2 = document.createElement('h2');
+        text2.className = "text-2xl font-bold text-gray-800 text-center";
+        text2.textContent = `The registration for the competition hasn't opened yet. Come back on ${data.registrationInfo.openTime.split('T')[0]}.`;
 
         messageWrapper.appendChild(text);
+        messageWrapper.appendChild(lineBrak);
+        messageWrapper.appendChild(text2);
 
         table.innerHTML = "";
 
@@ -309,7 +337,7 @@ function calculateRankings(data, table) {
 }
 
 async function getWCIF(table) {
-    return await fetch(`https://www.worldcubeassociation.org/api/v0/competitions/AzemeisOpen2025/wcif/public`)
+    return await fetch(`https://www.worldcubeassociation.org/api/v0/competitions/CubinginVenteira2025/wcif/public`)
         .then(response => response.json())
         .then(data => calculateRankings(data, table))
         .catch(error => console.error('Error fetching WCIF:', error));
