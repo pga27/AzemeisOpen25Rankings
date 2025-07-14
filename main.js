@@ -182,7 +182,7 @@ function buildPsychSheet(data, table) {
             totalEvents: 0
         };
         for (const result of person.personalBests) {
-            if (events.includes(result.eventId) && result.type == "average") {
+            if (person.registration.eventIds.includes(result.eventId) && result.type == "average") {
                 competitor.totalSum += result.best;
                 competitor[result.eventId] = result.best;
                 competitor.totalEvents++;
