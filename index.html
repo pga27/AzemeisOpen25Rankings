@@ -20,23 +20,13 @@
 
         body {
             font-family: 'Segoe UI', sans-serif;
-            height: 100vh;
             margin: 0;
-            position: relative;
-            overflow: hidden;
-        }
-
-        body::before {
-            content: "";
+            min-height: 100vh;
             background-image: url('azemeisLogo.png');
-            /* 🔁 Replace with your image path */
             background-size: cover;
             background-position: center;
-            opacity: 0.5;
-            position: absolute;
-            inset: 0;
-            /* top: 0, bottom: 0, left: 0, right: 0 */
-            z-index: -1;
+            background-attachment: fixed;
+            opacity: 1;
         }
     </style>
 </head>
